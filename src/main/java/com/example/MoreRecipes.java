@@ -132,7 +132,7 @@ public class MoreRecipes implements net.fabricmc.api.ModInitializer {
 		((ItemAccessor) (Object) REVERSE_CORE).more_recipes$setCraftingRemainingItem(REVERSE_CORE);
 
 		FuelRegistryEvents.BUILD.register((builder, context) -> {
-			builder.add(STONE_COAL, 6400);
+			builder.add(STONE_COAL, 14400);
 		});
 
 		LOGGER.info("More Recipes loaded!");
