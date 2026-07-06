@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "more-recipes",
+	"version": "${version}",
+	"name": "更多配方",
+	"description": "更多配方模组——腐肉烧皮革、矿物烧经验、大经验瓶、经验修补附魔书!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/more-recipes/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.example.MoreRecipes"
+		],
+		"client": [
+			"com.example.client.MoreRecipesClient"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

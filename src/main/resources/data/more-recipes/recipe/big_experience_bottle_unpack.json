@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "more-recipes:big_experience_bottle"
+  ],
+  "result": {
+    "id": "minecraft:experience_bottle",
+    "count": 9
+  }
+}

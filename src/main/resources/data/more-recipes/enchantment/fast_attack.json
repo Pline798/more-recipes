@@ -1,0 +1,30 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "translate": "enchantment.more-recipes.fast_attack"
+  },
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "amount": 1.0,
+        "attribute": "minecraft:attack_speed",
+        "id": "more-recipes:enchantment.fast_attack",
+        "operation": "add_multiplied_base"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 50,
+    "per_level_above_first": 0
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 0
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#more-recipes:enchantable/fast_attack",
+  "weight": 5
+}

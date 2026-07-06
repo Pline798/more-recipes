@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": "minecraft:experience_bottle"
+  },
+  "result": {
+    "id": "more-recipes:big_experience_bottle",
+    "count": 1
+  }
+}

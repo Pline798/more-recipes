@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "more-recipes:stone_coal",
+    "minecraft:stick"
+  ],
+  "result": {
+    "id": "minecraft:torch",
+    "count": 16
+  }
+}
