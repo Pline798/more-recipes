@@ -128,8 +128,8 @@ public class MoreRecipes implements net.fabricmc.api.ModInitializer {
 		ResourceKey<Enchantment> _key = FAST_ATTACK;
 
 		// Set craft remainders via mixin accessor
-		((ItemAccessor) (Object) CONVERSION_CORE).setCraftingRemainingItem(CONVERSION_CORE);
-		((ItemAccessor) (Object) REVERSE_CORE).setCraftingRemainingItem(REVERSE_CORE);
+		((ItemAccessor) (Object) CONVERSION_CORE).more_recipes$setCraftingRemainingItem(CONVERSION_CORE);
+		((ItemAccessor) (Object) REVERSE_CORE).more_recipes$setCraftingRemainingItem(REVERSE_CORE);
 
 		FuelRegistryEvents.BUILD.register((builder, context) -> {
 			builder.add(STONE_COAL, 6400);
