@@ -1,4 +1,5 @@
 {
+  "parent": "more-recipes:conversion_formula",
   "criteria": {
     "got_reverse_core": {
       "conditions": {

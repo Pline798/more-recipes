@@ -13,6 +13,7 @@
   },
   "display": {
     "announce_to_chat": true,
+    "background": "minecraft:gui/advancements/backgrounds/stone",
     "description": {
       "translate": "advancement.more-recipes.conversion_formula.description"
     },
