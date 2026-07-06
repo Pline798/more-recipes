@@ -22,6 +22,10 @@
 			"com.example.client.MoreRecipesClient"
 		]
 	},
+	"accessWidener": "more-recipes.accesswidener",
+	"mixins": [
+		"more-recipes.mixins.json"
+	],
 	"depends": {
 		"fabricloader": ">=0.19.2",
 		"minecraft": "~1.21.11",

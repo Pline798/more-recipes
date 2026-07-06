@@ -2,6 +2,7 @@ package com.example;
 
 import com.example.entity.ThrownBigExperienceBottle;
 import com.example.item.BigExperienceBottleItem;
+import com.example.mixin.ItemAccessor;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -126,24 +127,14 @@ public class MoreRecipes implements net.fabricmc.api.ModInitializer {
 		@SuppressWarnings("unused")
 		ResourceKey<Enchantment> _key = FAST_ATTACK;
 
-		// Set craft remainders via reflection (can't use Properties due to circular ref)
-		setCraftingRemainder(CONVERSION_CORE, CONVERSION_CORE);
-		setCraftingRemainder(REVERSE_CORE, REVERSE_CORE);
+		// Set craft remainders via mixin accessor
+		((ItemAccessor) (Object) CONVERSION_CORE).setCraftingRemainingItem(CONVERSION_CORE);
+		((ItemAccessor) (Object) REVERSE_CORE).setCraftingRemainingItem(REVERSE_CORE);
 
 		FuelRegistryEvents.BUILD.register((builder, context) -> {
 			builder.add(STONE_COAL, 6400);
 		});
 
 		LOGGER.info("More Recipes loaded!");
-	}
-
-	private static void setCraftingRemainder(Item item, Item remainder) {
-		try {
-			java.lang.reflect.Field field = Item.class.getDeclaredField("craftingRemainingItem");
-			field.setAccessible(true);
-			field.set(item, remainder);
-		} catch (Exception e) {
-			LOGGER.error("Failed to set crafting remainder for {}", item, e);
-		}
 	}
 }
