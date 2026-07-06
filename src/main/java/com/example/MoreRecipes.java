@@ -70,6 +70,30 @@ public class MoreRecipes implements net.fabricmc.api.ModInitializer {
 					.setId(STONE_COAL_ITEM_KEY)
 					.stacksTo(64)));
 
+	// === Conversion Cores ===
+
+	private static final ResourceKey<Item> CONVERSION_CORE_KEY = ResourceKey.create(
+			Registries.ITEM,
+			Identifier.fromNamespaceAndPath(MOD_ID, "conversion_core"));
+
+	public static final Item CONVERSION_CORE = Registry.register(
+			BuiltInRegistries.ITEM,
+			CONVERSION_CORE_KEY,
+			new Item(new Item.Properties()
+					.setId(CONVERSION_CORE_KEY)
+					.stacksTo(1)));
+
+	private static final ResourceKey<Item> REVERSE_CORE_KEY = ResourceKey.create(
+			Registries.ITEM,
+			Identifier.fromNamespaceAndPath(MOD_ID, "reverse_core"));
+
+	public static final Item REVERSE_CORE = Registry.register(
+			BuiltInRegistries.ITEM,
+			REVERSE_CORE_KEY,
+			new Item(new Item.Properties()
+					.setId(REVERSE_CORE_KEY)
+					.stacksTo(1)));
+
 	// === Fast Attack Enchantment ===
 
 	public static final ResourceKey<Enchantment> FAST_ATTACK = ResourceKey.create(
@@ -90,6 +114,8 @@ public class MoreRecipes implements net.fabricmc.api.ModInitializer {
 					.title(Component.translatable("itemGroup.more-recipes"))
 					.icon(() -> new ItemStack(BIG_EXPERIENCE_BOTTLE))
 					.displayItems((params, output) -> {
+						output.accept(CONVERSION_CORE);
+						output.accept(REVERSE_CORE);
 						output.accept(STONE_COAL);
 						output.accept(BIG_EXPERIENCE_BOTTLE);
 					})
@@ -97,15 +123,27 @@ public class MoreRecipes implements net.fabricmc.api.ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		// Load enchantment key to ensure class initialization
 		@SuppressWarnings("unused")
 		ResourceKey<Enchantment> _key = FAST_ATTACK;
 
-		// Register fuel: 6400 ticks (= 4x coal, burns 320 items)
+		// Set craft remainders via reflection (can't use Properties due to circular ref)
+		setCraftingRemainder(CONVERSION_CORE, CONVERSION_CORE);
+		setCraftingRemainder(REVERSE_CORE, REVERSE_CORE);
+
 		FuelRegistryEvents.BUILD.register((builder, context) -> {
 			builder.add(STONE_COAL, 6400);
 		});
 
 		LOGGER.info("More Recipes loaded!");
+	}
+
+	private static void setCraftingRemainder(Item item, Item remainder) {
+		try {
+			java.lang.reflect.Field field = Item.class.getDeclaredField("craftingRemainingItem");
+			field.setAccessible(true);
+			field.set(item, remainder);
+		} catch (Exception e) {
+			LOGGER.error("Failed to set crafting remainder for {}", item, e);
+		}
 	}
 }

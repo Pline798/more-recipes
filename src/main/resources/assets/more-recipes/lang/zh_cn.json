@@ -1,6 +1,8 @@
 {
   "item.more-recipes.big_experience_bottle": "大附魔之瓶",
   "item.more-recipes.stone_coal": "石炭",
+  "item.more-recipes.conversion_core": "转换核心",
+  "item.more-recipes.reverse_core": "逆转核心",
   "enchantment.more-recipes.fast_attack": "速攻",
   "itemGroup.more-recipes": "更多配方"
 }

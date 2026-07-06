@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "mineral_conversion",
+  "ingredients": [
+    "minecraft:iron_ingot",
+    "minecraft:iron_ingot",
+    "more-recipes:conversion_core"
+  ],
+  "result": {
+    "id": "minecraft:gold_ingot"
+  }
+}
