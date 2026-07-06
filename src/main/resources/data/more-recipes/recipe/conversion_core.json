@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " D ",
+    "DRD",
+    " D "
+  ],
+  "key": {
+    "D": "minecraft:diamond",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "more-recipes:conversion_core",
+    "count": 1
+  }
+}
