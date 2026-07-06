@@ -1,0 +1,34 @@
+{
+  "criteria": {
+    "got_conversion_core": {
+      "conditions": {
+        "items": [
+          {
+            "items": "more-recipes:conversion_core"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.more-recipes.conversion_formula.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "more-recipes:conversion_core"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.more-recipes.conversion_formula.title"
+    }
+  },
+  "requirements": [
+    [
+      "got_conversion_core"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

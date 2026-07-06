@@ -4,5 +4,9 @@
   "item.more-recipes.conversion_core": "转换核心",
   "item.more-recipes.reverse_core": "逆转核心",
   "enchantment.more-recipes.fast_attack": "速攻",
-  "itemGroup.more-recipes": "更多配方"
+  "itemGroup.more-recipes": "更多配方",
+  "advancement.more-recipes.conversion_formula.title": "转换公式",
+  "advancement.more-recipes.conversion_formula.description": "合成一个转换核心",
+  "advancement.more-recipes.reverse_formula.title": "逆转公式",
+  "advancement.more-recipes.reverse_formula.description": "合成一个逆转核心"
 }

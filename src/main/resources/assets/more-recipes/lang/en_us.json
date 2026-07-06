@@ -4,5 +4,9 @@
   "item.more-recipes.conversion_core": "Conversion Core",
   "item.more-recipes.reverse_core": "Reverse Core",
   "enchantment.more-recipes.fast_attack": "Fast Attack",
-  "itemGroup.more-recipes": "More Recipes"
+  "itemGroup.more-recipes": "More Recipes",
+  "advancement.more-recipes.conversion_formula.title": "Conversion Formula",
+  "advancement.more-recipes.conversion_formula.description": "Craft a Conversion Core",
+  "advancement.more-recipes.reverse_formula.title": "Reverse Formula",
+  "advancement.more-recipes.reverse_formula.description": "Craft a Reverse Core"
 }

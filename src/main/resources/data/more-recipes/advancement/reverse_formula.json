@@ -1,0 +1,34 @@
+{
+  "criteria": {
+    "got_reverse_core": {
+      "conditions": {
+        "items": [
+          {
+            "items": "more-recipes:reverse_core"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.more-recipes.reverse_formula.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "more-recipes:reverse_core"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.more-recipes.reverse_formula.title"
+    }
+  },
+  "requirements": [
+    [
+      "got_reverse_core"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
