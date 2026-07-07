@@ -42,6 +42,7 @@ replay_*.log
 # reasonix
 
 .reasonix/
+reasonix.toml
 
 # zip
 
