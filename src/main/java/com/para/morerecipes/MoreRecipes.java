@@ -1,11 +1,10 @@
-package com.example;
+package com.para.morerecipes;
 
-import com.example.entity.ThrownBigExperienceBottle;
-import com.example.item.BigExperienceBottleItem;
-import com.example.mixin.ItemAccessor;
+import com.para.morerecipes.entity.ThrownBigExperienceBottle;
+import com.para.morerecipes.item.BigExperienceBottleItem;
+import com.para.morerecipes.mixin.accessor.ItemAccessor;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
@@ -19,7 +18,6 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.enchantment.Enchantment;
 
@@ -124,6 +122,7 @@ public class MoreRecipes implements net.fabricmc.api.ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		// Force class-load the enchantment ResourceKey
 		@SuppressWarnings("unused")
 		ResourceKey<Enchantment> _key = FAST_ATTACK;
 

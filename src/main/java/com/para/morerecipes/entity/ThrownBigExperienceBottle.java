@@ -1,6 +1,6 @@
-package com.example.entity;
+package com.para.morerecipes.entity;
 
-import com.example.MoreRecipes;
+import com.para.morerecipes.MoreRecipes;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
@@ -17,7 +17,6 @@ public class ThrownBigExperienceBottle extends ThrownExperienceBottle {
 		super(entityType, level);
 	}
 
-	/** 手动设置 owner/position/item（与原版构建方式一致） */
 	public ThrownBigExperienceBottle(EntityType<? extends ThrownExperienceBottle> entityType,
 			LivingEntity owner, Level level, ItemStack stack) {
 		super(entityType, level);
@@ -26,7 +25,6 @@ public class ThrownBigExperienceBottle extends ThrownExperienceBottle {
 		this.setPos(owner.getX(), owner.getEyeY() - (double)0.1F, owner.getZ());
 	}
 
-	/** 工厂方法：供 Projectile.spawnProjectileFromRotation 使用 */
 	public static ThrownBigExperienceBottle create(ServerLevel level, LivingEntity owner, ItemStack stack) {
 		return new ThrownBigExperienceBottle(
 				MoreRecipes.BIG_EXPERIENCE_BOTTLE_ENTITY, owner, level, stack);
@@ -35,10 +33,8 @@ public class ThrownBigExperienceBottle extends ThrownExperienceBottle {
 	@Override
 	protected void onHit(HitResult result) {
 		if (!this.level().isClientSide()) {
-			// 粒子效果
 			this.level().levelEvent(2002, this.blockPosition(), -1);
 
-			// 10倍 XP: (3 + random(5) + random(5)) * 10 = 30-110
 			if (this.level() instanceof ServerLevel serverLevel) {
 				int xp = (3 + this.random.nextInt(5) + this.random.nextInt(5)) * 10;
 				ExperienceOrb.award(serverLevel, this.position(), xp);

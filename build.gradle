@@ -16,8 +16,6 @@ repositories {
 
 loom {
 	splitEnvironmentSourceSets()
-	accessWidenerPath = file("src/main/resources/more-recipes.accesswidener")
-
 	mods {
 		"more-recipes" {
 			sourceSet sourceSets.main

@@ -1,6 +1,6 @@
-package com.example.item;
+package com.para.morerecipes.item;
 
-import com.example.entity.ThrownBigExperienceBottle;
+import com.para.morerecipes.entity.ThrownBigExperienceBottle;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -29,7 +29,6 @@ public class BigExperienceBottleItem extends Item {
 				0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
 
 		if (level instanceof ServerLevel serverLevel) {
-			// 使用标准的 spawnProjectileFromRotation 方法
 			Projectile.spawnProjectileFromRotation(
 					ThrownBigExperienceBottle::create,
 					serverLevel, stack, player, -20.0F, 0.7F, 1.0F);

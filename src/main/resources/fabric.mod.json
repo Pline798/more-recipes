@@ -16,13 +16,12 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.MoreRecipes"
+			"com.para.morerecipes.MoreRecipes"
 		],
 		"client": [
-			"com.example.client.MoreRecipesClient"
+			"com.para.morerecipes.client.MoreRecipesClient"
 		]
 	},
-	"accessWidener": "more-recipes.accesswidener",
 	"mixins": [
 		"more-recipes.mixins.json"
 	],

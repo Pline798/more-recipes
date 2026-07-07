@@ -30,6 +30,5 @@
     [
       "got_reverse_core"
     ]
-  ],
-  "sends_telemetry_event": true
+  ]
 }

@@ -1,9 +1,9 @@
 {
 	"required": true,
-	"package": "com.example.mixin",
+	"package": "com.para.morerecipes.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ItemAccessor"
+		"accessor.ItemAccessor"
 	],
 	"injectors": {
 		"defaultRequire": 1

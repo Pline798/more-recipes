@@ -30,6 +30,5 @@
     [
       "got_conversion_core"
     ]
-  ],
-  "sends_telemetry_event": true
+  ]
 }
