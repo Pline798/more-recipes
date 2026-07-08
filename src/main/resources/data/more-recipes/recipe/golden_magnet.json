@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "GGG",
+    "GMG",
+    "GGG"
+  ],
+  "key": {
+    "G": "minecraft:gold_ingot",
+    "M": "more-recipes:iron_magnet"
+  },
+  "result": {
+    "id": "more-recipes:golden_magnet",
+    "count": 1
+  }
+}

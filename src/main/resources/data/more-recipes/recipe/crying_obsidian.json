@@ -3,7 +3,10 @@
   "category": "misc",
   "ingredients": [
     "minecraft:obsidian",
-    "minecraft:water_bucket"
+    {
+      "item": "minecraft:water_bucket",
+      "remainder": "minecraft:bucket"
+    }
   ],
   "result": {
     "id": "minecraft:crying_obsidian"

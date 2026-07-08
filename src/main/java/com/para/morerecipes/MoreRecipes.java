@@ -1,10 +1,13 @@
 package com.para.morerecipes;
 
+import com.para.morerecipes.component.ModComponents;
 import com.para.morerecipes.entity.ThrownBigExperienceBottle;
 import com.para.morerecipes.item.BigExperienceBottleItem;
+import com.para.morerecipes.item.MagnetItem;
 import com.para.morerecipes.mixin.accessor.ItemAccessor;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
@@ -18,8 +21,13 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,6 +77,63 @@ public class MoreRecipes implements net.fabricmc.api.ModInitializer {
 					.setId(STONE_COAL_ITEM_KEY)
 					.stacksTo(64)));
 
+	// === Magnets ===
+
+	private static final ResourceKey<Item> IRON_MAGNET_KEY = ResourceKey.create(
+			Registries.ITEM,
+			Identifier.fromNamespaceAndPath(MOD_ID, "iron_magnet"));
+
+	public static final Item IRON_MAGNET = Registry.register(
+			BuiltInRegistries.ITEM,
+			IRON_MAGNET_KEY,
+			new MagnetItem(new Item.Properties()
+					.setId(IRON_MAGNET_KEY)
+					.stacksTo(1)
+					.component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, false)
+					.component(ModComponents.MAGNET_ACTIVE, false), 8.0));
+
+	private static final ResourceKey<Item> GOLDEN_MAGNET_KEY = ResourceKey.create(
+			Registries.ITEM,
+			Identifier.fromNamespaceAndPath(MOD_ID, "golden_magnet"));
+
+	public static final Item GOLDEN_MAGNET = Registry.register(
+			BuiltInRegistries.ITEM,
+			GOLDEN_MAGNET_KEY,
+			new MagnetItem(new Item.Properties()
+					.setId(GOLDEN_MAGNET_KEY)
+					.stacksTo(1)
+					.component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, false)
+					.component(ModComponents.MAGNET_ACTIVE, false), 12.0));
+
+	private static final ResourceKey<Item> DIAMOND_MAGNET_KEY = ResourceKey.create(
+			Registries.ITEM,
+			Identifier.fromNamespaceAndPath(MOD_ID, "diamond_magnet"));
+
+	public static final Item DIAMOND_MAGNET = Registry.register(
+			BuiltInRegistries.ITEM,
+			DIAMOND_MAGNET_KEY,
+			new MagnetItem(new Item.Properties()
+					.setId(DIAMOND_MAGNET_KEY)
+					.stacksTo(1)
+					.rarity(Rarity.UNCOMMON)
+					.component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, false)
+					.component(ModComponents.MAGNET_ACTIVE, false), 16.0));
+
+	private static final ResourceKey<Item> NETHERITE_MAGNET_KEY = ResourceKey.create(
+			Registries.ITEM,
+			Identifier.fromNamespaceAndPath(MOD_ID, "netherite_magnet"));
+
+	public static final Item NETHERITE_MAGNET = Registry.register(
+			BuiltInRegistries.ITEM,
+			NETHERITE_MAGNET_KEY,
+			new MagnetItem(new Item.Properties()
+					.setId(NETHERITE_MAGNET_KEY)
+					.stacksTo(1)
+					.rarity(Rarity.EPIC)
+					.fireResistant()
+					.component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, false)
+					.component(ModComponents.MAGNET_ACTIVE, false), 20.0));
+
 	// === Conversion Cores ===
 
 	private static final ResourceKey<Item> CONVERSION_CORE_KEY = ResourceKey.create(
@@ -117,14 +182,17 @@ public class MoreRecipes implements net.fabricmc.api.ModInitializer {
 						output.accept(REVERSE_CORE);
 						output.accept(STONE_COAL);
 						output.accept(BIG_EXPERIENCE_BOTTLE);
+						output.accept(IRON_MAGNET);
+						output.accept(GOLDEN_MAGNET);
+						output.accept(DIAMOND_MAGNET);
+						output.accept(NETHERITE_MAGNET);
 					})
 					.build());
 
 	@Override
 	public void onInitialize() {
-		// Force class-load the enchantment ResourceKey
-		@SuppressWarnings("unused")
-		ResourceKey<Enchantment> _key = FAST_ATTACK;
+		// Initialize components
+		ModComponents.initialize();
 
 		// Set craft remainders via mixin accessor
 		((ItemAccessor) (Object) CONVERSION_CORE).more_recipes$setCraftingRemainingItem(CONVERSION_CORE);
@@ -132,6 +200,27 @@ public class MoreRecipes implements net.fabricmc.api.ModInitializer {
 
 		FuelRegistryEvents.BUILD.register((builder, context) -> {
 			builder.add(STONE_COAL, 30000);
+		});
+
+		// Add leather drops to pig, sheep, piglin, zombified_piglin, hoglin
+		Identifier[] leatherMobTables = {
+				Identifier.fromNamespaceAndPath("minecraft", "entities/pig"),
+				Identifier.fromNamespaceAndPath("minecraft", "entities/sheep"),
+				Identifier.fromNamespaceAndPath("minecraft", "entities/piglin"),
+				Identifier.fromNamespaceAndPath("minecraft", "entities/zombified_piglin"),
+				Identifier.fromNamespaceAndPath("minecraft", "entities/hoglin")
+		};
+		LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
+			if (source.isBuiltin()) {
+				for (Identifier mobId : leatherMobTables) {
+					if (mobId.equals(key.identifier())) {
+						LootPool.Builder pool = LootPool.lootPool()
+								.setRolls(UniformGenerator.between(0.0F, 2.0F))
+								.add(LootItem.lootTableItem(Items.LEATHER));
+						tableBuilder.withPool(pool);
+					}
+				}
+			}
 		});
 
 		LOGGER.info("More Recipes loaded!");

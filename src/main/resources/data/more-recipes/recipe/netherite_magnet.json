@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "more-recipes:diamond_magnet",
+  "result": {
+    "id": "more-recipes:netherite_magnet",
+    "count": 1
+  },
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

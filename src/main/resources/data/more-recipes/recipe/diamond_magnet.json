@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "DDD",
+    "DMD",
+    "DDD"
+  ],
+  "key": {
+    "D": "minecraft:diamond",
+    "M": "more-recipes:golden_magnet"
+  },
+  "result": {
+    "id": "more-recipes:diamond_magnet",
+    "count": 1
+  }
+}
